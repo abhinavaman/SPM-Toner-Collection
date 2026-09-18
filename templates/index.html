@@ -1,0 +1,864 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>SPM Toner Collection</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header>
+
+    <div class="header-left">
+
+        <img
+            src="{{ url_for('static', filename='spm_logo.png') }}"
+            alt="Sirpur Paper Mills Logo"
+            class="spm-logo"
+        >
+
+        <div>
+
+            <h1>SPM Toner Collection</h1>
+
+            <p>
+                Digital data collection for IT Department
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="btn light"
+        onclick="toggleExportBox()"
+    >
+        Export CSV
+    </button>
+
+</header>
+
+
+
+<!-- =========================================
+     EXPORT RECORDS
+========================================= -->
+
+<section
+    id="exportBox"
+    class="export-box"
+    style="display: none;"
+>
+
+    <h2>Export Records</h2>
+
+
+    <form
+        method="get"
+        action="/export"
+    >
+
+
+        <div class="grid">
+
+
+            <!-- Start Date -->
+
+            <label>
+
+                Start Date
+
+                <input
+                    type="date"
+                    name="start_date"
+                    id="start_date"
+                >
+
+            </label>
+
+
+
+            <!-- End Date -->
+
+            <label>
+
+                End Date
+
+                <input
+                    type="date"
+                    name="end_date"
+                    id="end_date"
+                >
+
+            </label>
+
+
+
+            <!-- Department -->
+
+            <label>
+
+                Department
+
+                <select
+                    name="department"
+                    id="department_export"
+                >
+
+                    <option value="">
+                        All Departments
+                    </option>
+
+
+                    {% for dept in departments %}
+
+                        <option
+                            value="{{ dept.department }}"
+                        >
+
+                            {{ dept.department }}
+
+                        </option>
+
+                    {% endfor %}
+
+
+                </select>
+
+            </label>
+
+
+        </div>
+
+
+
+        <!-- Quick Range -->
+
+        <div class="quick-export">
+
+            <strong>
+                Quick Range:
+            </strong>
+
+
+            <button
+                type="button"
+                class="btn"
+                onclick="setExportRange(1)"
+            >
+                1 Month
+            </button>
+
+
+            <button
+                type="button"
+                class="btn"
+                onclick="setExportRange(2)"
+            >
+                2 Months
+            </button>
+
+
+            <button
+                type="button"
+                class="btn clear"
+                onclick="clearExportFilters()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+
+        <!-- Export Buttons -->
+
+        <div class="export-actions">
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Export CSV
+            </button>
+
+
+            <button
+                type="button"
+                class="btn clear"
+                onclick="closeExportBox()"
+            >
+                Cancel
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+</section>
+
+
+
+<main>
+
+
+<!-- =========================================
+     FLASH MESSAGES
+========================================= -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% for cat, msg in messages %}
+
+        <div class="alert {{ cat }}">
+            {{ msg }}
+        </div>
+
+    {% endfor %}
+
+{% endwith %}
+
+
+
+<!-- =========================================
+     STATISTICS
+========================================= -->
+
+<div class="stats">
+
+
+    <div>
+
+        <small>
+            Total records
+        </small>
+
+        <b>
+            {{ total }}
+        </b>
+
+    </div>
+
+
+    <div>
+
+        <small>
+            Unique employees
+        </small>
+
+        <b>
+            {{ people }}
+        </b>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================
+     RECORD TONER COLLECTION
+========================================= -->
+
+<section>
+
+    <h2>
+        Record toner collection
+    </h2>
+
+
+    <form
+        method="post"
+        action="/submit"
+    >
+
+
+        <div class="grid">
+
+
+            <!-- Employee Code -->
+
+            <label>
+
+                Employee Code *
+
+                <input
+                    name="employee_id"
+                    id="employee_id"
+                    placeholder="e.g. EMP001"
+                    required
+                >
+
+            </label>
+
+
+
+            <!-- Employee Name -->
+
+            <label>
+
+                Employee Name
+
+                <input
+                    name="employee_name"
+                    id="employee_name"
+                    readonly
+                    placeholder="Automatically fetched"
+                >
+
+            </label>
+
+
+
+            <!-- Department -->
+
+            <label>
+
+                Department
+
+                <input
+                    name="department"
+                    id="department"
+                    readonly
+                    placeholder="Automatically fetched"
+                >
+
+            </label>
+
+
+
+            <!-- Printer -->
+
+            <label>
+
+                Printer Name / ID *
+
+                <input
+                    name="printer_name"
+                    required
+                >
+
+            </label>
+
+
+
+            <!-- Toner -->
+
+            <label>
+
+                Toner Type *
+
+                <input
+                    name="toner_type"
+                    placeholder="e.g. HP 88A"
+                    required
+                >
+
+            </label>
+
+
+
+            <!-- Quantity -->
+
+            <label>
+
+                Quantity *
+
+                <input
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    value="1"
+                    required
+                >
+
+            </label>
+
+
+
+            <!-- Collection Date -->
+
+            <label>
+
+                Collection Date *
+
+                <input
+                    type="date"
+                    name="collection_date"
+                    required
+                >
+
+            </label>
+
+
+
+            <!-- Remarks -->
+
+            <label>
+
+                Remarks
+
+                <input
+                    name="remarks"
+                >
+
+            </label>
+
+
+        </div>
+
+
+
+        <button
+            class="btn"
+            type="submit"
+        >
+            Save Record
+        </button>
+
+
+    </form>
+
+</section>
+
+
+
+<!-- =========================================
+     COLLECTED RECORDS
+========================================= -->
+
+<section>
+
+
+    <div class="title">
+
+        <h2>
+            Collected records
+        </h2>
+
+        <span>
+            {{ total }} record(s)
+        </span>
+
+    </div>
+
+
+
+    <!-- Search -->
+
+    <form
+        method="get"
+        action="/"
+    >
+
+        <div class="search-box">
+
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search employee, ID, department, printer or toner..."
+                value="{{ search }}"
+            >
+
+
+            <button
+                class="btn"
+                type="submit"
+            >
+                Search
+            </button>
+
+
+            {% if search %}
+
+                <a
+                    href="/"
+                    class="btn clear"
+                >
+                    Clear
+                </a>
+
+            {% endif %}
+
+
+        </div>
+
+    </form>
+
+
+
+    <!-- Records Table -->
+
+    <div class="table">
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>
+                        Employee
+                    </th>
+
+                    <th>
+                        Employee ID
+                    </th>
+
+                    <th>
+                        Department
+                    </th>
+
+                    <th>
+                        Printer
+                    </th>
+
+                    <th>
+                        Toner
+                    </th>
+
+                    <th>
+                        Qty
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Remarks
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
+
+
+            {% for r in rows %}
+
+                <tr>
+
+                    <td>
+                        {{ r.id }}
+                    </td>
+
+                    <td>
+                        {{ r.employee_name }}
+                    </td>
+
+                    <td>
+                        {{ r.employee_id }}
+                    </td>
+
+                    <td>
+                        {{ r.department }}
+                    </td>
+
+                    <td>
+                        {{ r.printer_name }}
+                    </td>
+
+                    <td>
+                        {{ r.toner_type }}
+                    </td>
+
+                    <td>
+                        {{ r.quantity }}
+                    </td>
+
+                    <td>
+                        {{ r.collection_date }}
+                    </td>
+
+                    <td>
+                        {{ r.remarks or "-" }}
+                    </td>
+
+                </tr>
+
+
+            {% else %}
+
+                <tr>
+
+                    <td colspan="9">
+                        No records found.
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+
+<!-- Employee Auto-Fetch -->
+
+<script>
+
+const employeeCodeInput =
+    document.getElementById("employee_id");
+
+const employeeNameInput =
+    document.getElementById("employee_name");
+
+const departmentInput =
+    document.getElementById("department");
+
+
+employeeCodeInput.addEventListener(
+    "blur",
+    async function () {
+
+
+        const employeeCode =
+            employeeCodeInput.value.trim();
+
+
+        if (!employeeCode) {
+
+            employeeNameInput.value = "";
+
+            departmentInput.value = "";
+
+            return;
+
+        }
+
+
+        try {
+
+
+            const response =
+                await fetch(
+                    `/employee/${encodeURIComponent(employeeCode)}`
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (data.found) {
+
+
+                employeeNameInput.value =
+                    data.employee_name;
+
+
+                departmentInput.value =
+                    data.department;
+
+
+            }
+
+            else {
+
+
+                employeeNameInput.value = "";
+
+                departmentInput.value = "";
+
+
+                alert(
+                    "Employee code not found."
+                );
+
+
+            }
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(error);
+
+
+            employeeNameInput.value = "";
+
+            departmentInput.value = "";
+
+
+            alert(
+                "Could not fetch employee details."
+            );
+
+
+        }
+
+
+    }
+);
+
+</script>
+
+
+
+<!-- Export Functions -->
+
+<script>
+
+
+function toggleExportBox() {
+
+    const exportBox = document.getElementById("exportBox");
+
+    if (exportBox.style.display === "none") {
+
+        exportBox.style.display = "block";
+
+    } else {
+
+        exportBox.style.display = "none";
+
+    }
+
+}
+
+
+
+function closeExportBox() {
+
+    document.getElementById(
+        "exportBox"
+    ).style.display = "none";
+
+}
+
+
+
+function setExportRange(months) {
+
+
+    const endDate =
+        new Date();
+
+
+    const startDate =
+        new Date();
+
+
+    startDate.setMonth(
+        startDate.getMonth() - months
+    );
+
+
+    document.getElementById(
+        "end_date"
+    ).value =
+        formatDate(endDate);
+
+
+    document.getElementById(
+        "start_date"
+    ).value =
+        formatDate(startDate);
+
+}
+
+
+
+function formatDate(date) {
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+
+function clearExportFilters() {
+
+
+    document.getElementById(
+        "start_date"
+    ).value = "";
+
+
+    document.getElementById(
+        "end_date"
+    ).value = "";
+
+
+    document.getElementById(
+        "department_export"
+    ).value = "";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
