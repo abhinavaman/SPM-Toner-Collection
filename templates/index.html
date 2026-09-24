@@ -5,7 +5,10 @@
 
     <meta charset="utf-8">
 
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
 
     <title>SPM Toner Collection</title>
 
@@ -77,7 +80,6 @@
         action="/export"
     >
 
-
         <div class="grid">
 
 
@@ -141,7 +143,6 @@
 
                     {% endfor %}
 
-
                 </select>
 
             </label>
@@ -194,7 +195,6 @@
 
         <div class="export-actions">
 
-
             <button
                 type="submit"
                 class="btn"
@@ -210,7 +210,6 @@
             >
                 Cancel
             </button>
-
 
         </div>
 
@@ -248,7 +247,6 @@
 
 <div class="stats">
 
-
     <div>
 
         <small>
@@ -273,7 +271,6 @@
         </b>
 
     </div>
-
 
 </div>
 
@@ -308,7 +305,7 @@
                 <input
                     name="employee_id"
                     id="employee_id"
-                    placeholder="e.g. EMP001"
+                    placeholder="e.g. 139300"
                     required
                 >
 
@@ -325,6 +322,23 @@
                 <input
                     name="employee_name"
                     id="employee_name"
+                    readonly
+                    placeholder="Automatically fetched"
+                >
+
+            </label>
+
+
+
+            <!-- Designation -->
+
+            <label>
+
+                Designation
+
+                <input
+                    name="designation"
+                    id="designation"
                     readonly
                     placeholder="Automatically fetched"
                 >
@@ -647,120 +661,142 @@
 
 <script>
 
-const employeeCodeInput =
-    document.getElementById("employee_id");
+document.addEventListener("DOMContentLoaded", function () {
 
-const employeeNameInput =
-    document.getElementById("employee_name");
+    const employeeCodeInput =
+        document.getElementById("employee_id");
 
-const departmentInput =
-    document.getElementById("department");
+    const employeeNameInput =
+        document.getElementById("employee_name");
 
+    const designationInput =
+        document.getElementById("designation");
 
-employeeCodeInput.addEventListener(
-    "blur",
-    async function () {
-
-
-        const employeeCode =
-            employeeCodeInput.value.trim();
+    const departmentInput =
+        document.getElementById("department");
 
 
-        if (!employeeCode) {
+    employeeCodeInput.addEventListener(
+        "blur",
+        async function () {
 
-            employeeNameInput.value = "";
-
-            departmentInput.value = "";
-
-            return;
-
-        }
+            const employeeCode =
+                employeeCodeInput.value.trim();
 
 
-        try {
-
-
-            const response =
-                await fetch(
-                    `/employee/${encodeURIComponent(employeeCode)}`
-                );
-
-
-            const data =
-                await response.json();
-
-
-            if (data.found) {
-
-
-                employeeNameInput.value =
-                    data.employee_name;
-
-
-                departmentInput.value =
-                    data.department;
-
-
-            }
-
-            else {
-
+            if (!employeeCode) {
 
                 employeeNameInput.value = "";
-
+                designationInput.value = "";
                 departmentInput.value = "";
 
-
-                alert(
-                    "Employee code not found."
-                );
-
+                return;
 
             }
 
 
+            try {
+
+                const response =
+                    await fetch(
+                        `/employee/${encodeURIComponent(employeeCode)}`
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Server returned an error"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Employee data:",
+                    data
+                );
+
+
+                if (data.found) {
+
+                    employeeNameInput.value =
+                        data.employee_name || "";
+
+                    designationInput.value =
+                        data.designation || "";
+
+                    departmentInput.value =
+                        data.department || "";
+
+                }
+
+                else {
+
+                    employeeNameInput.value = "";
+                    designationInput.value = "";
+                    departmentInput.value = "";
+
+                    alert(
+                        "Employee code not found."
+                    );
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Employee fetch error:",
+                    error
+                );
+
+                employeeNameInput.value = "";
+                designationInput.value = "";
+                departmentInput.value = "";
+
+                alert(
+                    "Could not fetch employee details."
+                );
+
+            }
+
         }
+    );
 
-        catch (error) {
-
-
-            console.error(error);
-
-
-            employeeNameInput.value = "";
-
-            departmentInput.value = "";
-
-
-            alert(
-                "Could not fetch employee details."
-            );
-
-
-        }
-
-
-    }
-);
+});
 
 </script>
 
 
 
-<!-- Export Functions -->
+<!-- =========================================
+     EXPORT FUNCTIONS
+========================================= -->
 
 <script>
 
 
 function toggleExportBox() {
 
-    const exportBox = document.getElementById("exportBox");
+    const exportBox =
+        document.getElementById("exportBox");
 
-    if (exportBox.style.display === "none") {
+
+    if (
+        exportBox.style.display === "none"
+    ) {
 
         exportBox.style.display = "block";
 
-    } else {
+    }
+
+    else {
 
         exportBox.style.display = "none";
 

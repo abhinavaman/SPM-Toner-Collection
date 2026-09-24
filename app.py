@@ -30,10 +30,11 @@ def init_db():
 
     # Employee master table
     conn.execute("""
-        CREATE TABLE IF NOT EXISTS employee_master (
-            employee_code TEXT PRIMARY KEY,
-            employee_name TEXT NOT NULL,
-            department TEXT NOT NULL
+     CREATE TABLE IF NOT EXISTS employee_master (
+        employee_code TEXT PRIMARY KEY,
+        employee_name TEXT NOT NULL,
+        designation TEXT,
+        department TEXT NOT NULL
         )
     """)
 
@@ -153,7 +154,7 @@ def get_employee(employee_code):
     conn = db()
 
     employee = conn.execute("""
-        SELECT employee_code, employee_name, department
+        SELECT employee_code, employee_name, designation, department
         FROM employee_master
         WHERE employee_code = ?
     """, (employee_code.strip(),)).fetchone()
@@ -166,6 +167,7 @@ def get_employee(employee_code):
             "found": True,
             "employee_code": employee["employee_code"],
             "employee_name": employee["employee_name"],
+            "designation": employee["designation"],
             "department": employee["department"]
         })
 
