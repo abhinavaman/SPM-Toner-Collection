@@ -1,0 +1,422 @@
+﻿employee_code,employee_name,designation,department
+139300,A.K.Mishra,Vice President,Works office
+22000407,M.S.Giri,General Manager,HR & IR
+136805,Gireesh Rai,General Manager,Instrumentation
+22001268,Anil Kumar Majety,General Manager,Accounts
+139269,Abhishak Plawat,General Manager,P.M/c.Operation
+22000125,Surendra L.Narkhede,General Manager,Raw Material
+11002471,Niranjan Tripathy,Chief Manager,Accounts
+22001557,V.N.D. Sarath Chandra,Deputy Manager,Accounts
+22001326,Dhanunjaya Dandu,Assistant Manager,Accounts
+22000599,Rahul Kumar Sahu,Assistant Manager,Accounts
+126374,E.Satyanarayana,Assistant Officer,Accounts
+126443,Gopal Pancharia,Assistant Officer,Accounts
+131274,Ramesh Vyas,Assistant Officer,Accounts
+22001219,Dinesh Kumar Yadav,Assistant Officer,Accounts
+22000378,Sachin Kumar Jha,Assistant Officer,Accounts
+22000649,Boddu Anju,Assistant Officer,Accounts
+22001325,Singam Nikhil,Junior Officer,Accounts
+22001066,Amulya Kumar Pradhan,Senior Manager,Civil
+137201,K.Parmesh,Deputy Manager,Civil
+22001156,Simranpreet Singh,Assistant Manager,Civil
+22001371,Prabhat Kumar Panda,Senior Engineer,Civil
+22000392,Giribabu Velkuru,DGM,Electrical
+136772,Kanchan Kumar,Senior Manager,Electrical
+138653,Md.Razak,Senior Manager,Electrical
+139511,Rohit Saxena,Manager,Electrical
+124356,K.D.Emmanuel,Deputy Manager,Electrical
+22001128,Praveen Kumar Kottu,Deputy Manager,Electrical
+22001293,Varun Kumar Algarsamy,Deputy Manager,Electrical
+133771,I.Ramesh Babu,Deputy Manager,Electrical
+123682,Dinesh Singh,Assistant Manager,Electrical
+124969,B.Rayamallu,Assistant Manager,Electrical
+22001124,G.Vishnu Vardana Reddy,Assistant Manager,Electrical
+137300,M.Krishna,Assistant Manager,Electrical
+22001614,Sanjay Kumar Verma,Assistant Manager,Electrical
+128381,Ch.Narasimha Raja,Senior Engineer,Electrical
+22001184,Vanka Venkatesh,Senior Engineer,Electrical
+139456,Vivek Lal,Senior Engineer,Electrical
+134343,D.Ramesh,Engineer,Electrical
+22000866,Nunavath Ramesh,Engineer,Electrical
+22001559,Potharaju Sampath,Engineer,Electrical
+137102,Indrajeet Kumar Rajak,Assistant Engineer,Electrical
+22000369,Ramisetti Srinivasu,Senior Manager,Safety
+22001471,Girada Venkatanaidu,Assistant Manager,Safety
+134783,Ch.Ravindar Raju,Junior Officer,Safety
+139225,Md.Azaruddin,Deputy Manager,Quality Control
+11002294,Priyadarshan Balabantaray,Deputy Manager,Environment & ETP
+123897,Ramesh Jhawar,Senior Officer,Environment & ETP
+138059,N.Srinivasu,Officer,Environment & ETP
+127888,Devarkonda Laxminarayana,Assistant Officer,Environment & ETP
+132462,Rachakonda Venugopal,Assistant Officer,Environment & ETP
+133859,I.Srinivas,Officer,Environment & ETP
+515446,Ghanshyam Behra,Junior Officer,Environment & ETP
+137190,Satish Kumar Singh,Chief Security Officer,HR & IR
+22001724,Vemula Prasanna Kumar,Manager,HR & IR
+22001374,Dr. Kathila Sashidhar Reddy,Factory Medical Officer,HR & IR
+22001239,Santhosh Parvathi,Deputy Manager,HR & IR
+22001397,Maganti Manohar,Deputy Manager,HR & IR
+136409,Amit Kumar Priyadarshi,Assistant Manager,HR & IR
+22001347,Srinivas Mudraboina,Assistant Manager,HR & IR
+22001510,Kundan Sharma,Assistant Manager,HR & IR
+22001665,Gurpreet Singh,Assistant Manager,HR & IR
+122554,I.Surendranath,Senior Officer,HR & IR
+123999,Md.Jamsheed Ali,Senior Officer,HR & IR
+124323,K.K.Loya,Officer,HR & IR
+126885,V.Rama Rao,Officer,HR & IR
+127571,V.Satyanarayana,Officer,HR & IR
+127902,Thumma Ramesh,Officer,HR & IR
+22001385,Bhupathi Sai Kumar,Officer,HR & IR
+122418,N.B.Singh,Assistant Officer,HR & IR
+126409,Abdul Kadar,Assistant Officer,HR & IR
+127822,Vangala Praveen Kumar,Assistant Officer,HR & IR
+132638,Dinesh Singh-II,Assistant Officer,HR & IR
+137322,Vishnu Singh,Assistant Officer,HR & IR
+22001539,Ramavath Suman,Staff Nurse (Male),HR & IR
+22001543,Rudraksha Sudheer,Staff Nurse (Male),HR & IR
+22001554,Durgam Srivani,Staff Nurse (Female),HR & IR
+515140,S.Anand Rao,Assistant Manager,Hyderabad Office
+138642,K.Narayana Murthy,Senior Manager,Instrumentation
+22001054,Gopichand Bathula,Manager,Instrumentation
+136816,Raghava Prasad,Deputy Manager,Instrumentation
+22001631,Moka Sarat Babu,Deputy Manager,Instrumentation
+132748,Durgam Srinivas,Assistant Manager,Instrumentation
+139126,Koppula Shivakrishna,Assistant Manager,Instrumentation
+22001155,Kambala Vinod Kumar,Assistant Manager,Instrumentation
+22001404,D. Kishore,Assistant Manager,Instrumentation
+22000576,Poodari Hemanth Kumar,Assistant Manager,Instrumentation
+22000577,Krushna Gopal Bhendarkar,Assistant Manager,Instrumentation
+139060,Vipin Trivedi,Senior Engineer,Instrumentation
+22000736,T.Yadaiah,Senior Engineer,Instrumentation
+22001600,Peddapelli Ranjith,Engineer,Instrumentation
+22001642,Ashutosh Kumar Jha,Engineer,Instrumentation
+22001405,Rehana Begum,Jr. Officer - Trainee,Instrumentation
+22001729,Peddinti Vikas,Jr. Officer - Trainee,Instrumentation
+22001730,Dugunta Lokeshwar,Jr. Officer - Trainee,Instrumentation
+22001731,Madasu Nikhil Kumar,Jr. Officer - Trainee,Instrumentation
+22001746,Madikonda Sai Kumar,Jr. Officer - Trainee,Instrumentation
+15000080,Vishwanath Thakur,DGM,IT
+136893,Sawan Kumar Pradhan,Manager,IT
+136904,Atul Shankar Dethekar,Assistant Manager,IT
+22000726,Siva Rama Krishna Achanta,DGM,Planning & Devp
+136959,Paritosh Samanta,Assistant Manager,Planning & Devp
+22001398,Perumalla Akshay Kumar,Senior Engineer,Planning & Devp
+22000918,Reddiwar Lavanya,Officer,Planning & Devp
+22001484,Adla Srinu,Engineer,Project
+22001573,Rigved Bhargav,Officeer Trainee,Project
+22000520,D.Krishna Rao Patro,DGM,P.M/c.Mechanical
+124878,Sunil Kumar Singh,Chief Manager,P.M/c.Mechanical
+126330,A.Srinivas,Deputy Manager,P.M/c.Mechanical
+22000583,Sudhamoy Dutta,Deputy Manager,P.M/c.Mechanical
+22001127,Ratan Sarkar,Assistant Manager,P.M/c.Mechanical
+22000710,Buddhadev Panja,Assistant Manager,P.M/c.Mechanical
+22001276,Srinivas Rao Batsa,Senior Engineer,P.M/c.Mechanical
+22001369,Raghuwansh Kumar Jha,Senior Engineer,P.M/c.Mechanical
+22001753,Ranjan Panigrahi,Engineer,P.M/c.Mechanical
+22000634,Raj Kishor Yadav,Junior Foremen,P.M/c.Mechanical
+22001547,Praveen Ramnarayan Prasad,Engineer Trainee,P.M/c.Mechanical
+15000557,Pravin B.Kothawade,Senior Manager,P.M/c.Operation
+138081,M.Srinivasa Rao,Manager,P.M/c.Operation
+22001612,Pankaj Kumar Shrivastav,Manager,P.M/c.Operation
+22000217,Soumyajit Tripathy,Manager,P.M/c.Operation
+22001423,Vikash Singh,Deputy Manager,P.M/c.Operation
+137938,Punit Pratap Singh,Deputy Manager,P.M/c.Operation
+138840,Kulvinder Singh,Assistant Manager,P.M/c.Operation
+22000488,Sanjeev Kumar Sharma,Assistant Manager,P.M/c.Operation
+22000558,Gyanapati Rairanjan Biswal,Assistant Manager,P.M/c.Operation
+22000611,Sujeet Kumar Govind Pandey,Assistant Manager,P.M/c.Operation
+22001486,Deepak Kumar Panda,Assistant Manager,P.M/c.Operation
+22001530,Deepak K Sarda,Assistant Manager,P.M/c.Operation
+22001744,Ajay Kumar Singh,Assistant Manager,P.M/c.Operation
+22001757,Vignesh Kannan,Assistant Manager,P.M/c.Operation
+22000719,Praveen Kumar Singh,Senior Officer,P.M/c.Operation
+22001312,Pankaj Singh,Sr. Shift Incharge,P.M/c.Operation
+22001332,Jitendra Kumar Sharma,Sr. Shift Incharge,P.M/c.Operation
+138796,Rayapati Krishna Rao,Sr. Shift Incharge,P.M/c.Operation
+132660,Mithilesh Prasad,Senior Officer,P.M/c.Operation
+22000526,Santosh S.Jadhav,Sr. Shift Incharge,P.M/c.Operation
+22000981,Suhani Ray,Sr. Shift Incharge,P.M/c.Operation
+22000979,Aastha Bhushan,Shift Incharge,P.M/c.Operation
+22001278,Amrendra Rai,Shift Incharge,P.M/c.Operation
+22001235,Priyanka Kumari,Shift Incharge,P.M/c.Operation
+22001411,Madhura Mahendra Yerpude,Shift Incharge,P.M/c.Operation
+128887,D.Shekhar,Assistant Officer,P.M/c.Operation
+132385,Edla Shankariah,Officer,P.M/c.Operation
+133265,P.Sunil Kumar,Officer,P.M/c.Operation
+132440,Baidyanath Shukla,Assistant Officer,P.M/c.Operation
+133947,Ajay Kumar Singh,Assistant Officer,P.M/c.Operation
+22000282,Srinandan Choudhary,Junior Foremen,P.M/c.Operation
+22000283,Binod Kumar Pradhan,Junior Foremen,P.M/c.Operation
+22000284,R.Srinivas Reddy,Junior Foremen,P.M/c.Operation
+22000287,Shivnath Singh,Junior Foremen,P.M/c.Operation
+22000325,Anil Kumar,Junior Foremen,P.M/c.Operation
+22000326,Ajay Chauhan,Junior Foremen,P.M/c.Operation
+22000454,Durgam Srinivas,Junior Officer,P.M/c.Operation
+22000684,P.V.V.Sathish Kumar,Junior Foremen,P.M/c.Operation
+22000685,K.Naga Phani Raju,Junior Foremen,P.M/c.Operation
+22000686,Vinod Kumar,Junior Foremen,P.M/c.Operation
+22000687,Bh.S.V.S.V.Raju,Junior Foremen,P.M/c.Operation
+22001012,Borkut Vandana,Junior Officer,P.M/c.Operation
+22001183,Arun Kumar Singh,Junior Foremen,P.M/c.Operation
+22001487,Alekha Patro,Junior Foremen,P.M/c.Operation
+22001701,Himanshu Raju Atkar,Engineer Trainee,P.M/c.Operation
+22001703,Anshul Sandip Nagrale,Engineer Trainee,P.M/c.Operation
+22001553,Arnakonda Renukadevi,Jr. Officer - Trainee,P.M/c.Operation
+22001564,Nainsri Srivastava,Jr. Officer - Trainee,P.M/c.Operation
+22001719,Sushmita Kumari,Jr. Officer - Trainee,P.M/c.Operation
+139005,Vikas Kumar,Senior Manager,PM-Converting
+135584,Jai Prakash Singh,Assistant Manager,PM-Converting
+22001644,Mettu Rajesh Kumar,Assistant Manager,PM-Converting
+133892,Dharni Naresh,Senior Officer,PM-Converting
+133914,Buram Nageshwar,Officer,PM-Converting
+125928,P.Krishana,Assistant Officer,PM-Converting
+130515,A.Ashok Kumar,Assistant Officer,PM-Converting
+22000679,Ashish Tejbahadur Singh,Assistant Foremen,PM-Converting
+22000681,Prabhakar Singh,Junior Foremen,PM-Converting
+22000682,Nitesh Suresh Potwar,Junior Foremen,PM-Converting
+22000692,Rajendra Sahu,Junior Foremen,PM-Converting
+22001479,Narige Pawan Kalyan,Junior Officer,PM-Converting
+22001478,Itla Sai Krishna,Junior Officer,PM-Converting
+22001480,Durgam Manoj Kumar,Junior Officer,PM-Converting
+22001481,Raj Kumar,Junior Officer,PM-Converting
+22001383,Umesh Chandra Mishra,Chief Manager,Power Block
+22000629,Kiran Kumar Nagabelli,Manager,Power Block
+125633,K.Krishana Reddy,Deputy Manager,Power Block
+126249,Krishna Halder,Deputy Manager,Power Block
+137795,A.Ramchandra Reddy,Deputy Manager,Power Block
+22000951,BR.Sravan Kumar,Deputy Manager,Power Block
+22000652,Vikas Rabde,Assistant Manager,Power Block
+131978,S.Mahesh Kumar,Assistant Manager,Power Block
+22001188,Krupa Shanker Singh,Assistant Manager,Power Block
+129382,Dagam Laxman,Senior Engineer,Power Block
+22001533,Dharni Santhosh,Senior Engineer,Power Block
+22000604,Hrithik Dubey,Engineer,Power Block
+22000930,Dasari Divya Rani,Engineer,Power Block
+22000929,Amrit Kumar,Engineer,Power Block
+22000920,Vallapu Manoj Kumar,Engineer,Power Block
+126396,Vittal Prasad Lakhotia,Assistant Officer,Power Block
+132077,Dharni Srinivas,Assistant Officer,Power Block
+133782,Konda Vijay Kumar,Assistant Officer,Power Block
+122907,P.Suryanarayana,Assistant Officer,Power Block
+22001050,Gajji Pratap,Assistant Officer,Power Block
+130625,Vijay Kumar,Junior Officer,Power Block
+22001493,Manoj Kumar Lal,Chief Manager,Pulp Mill & Chipper
+22001412,Gajanan Madhukar Sambhe,Senior Manager,Pulp Mill & Chipper
+138103,Rakesh Singh,Manager,Pulp Mill & Chipper
+127844,K.Madhusudhan,Assistant Manager,Pulp Mill & Chipper
+137421,S.Manoj Kumar,Assistant Manager,Pulp Mill & Chipper
+22001604,Narinder Pal,Assistant Manager,Pulp Mill & Chipper
+127855,Koutla Purushotham,Senior Officer,Pulp Mill & Chipper
+22000539,Bukya Aravind Naik,Sr. Shift Incharge,Pulp Mill & Chipper
+22001198,Ayush Balu Gedam,Shift Incharge,Pulp Mill & Chipper
+127866,P.Sheshadri,Officer,Pulp Mill & Chipper
+132308,Mohammed Mustafa,Officer,Pulp Mill & Chipper
+22001419,Megavath Prathap,Shift Incharge,Pulp Mill & Chipper
+125519,T.Srinivas,Assistant Officer,Pulp Mill & Chipper
+131428,V.Surendar,Assistant Process Controller,Pulp Mill & Chipper
+131582,B.Venkata Prasad,Assistant Process Controller,Pulp Mill & Chipper
+137608,Muddam Venkatesham,Assistant Foremen,Pulp Mill & Chipper
+137630,Sata Narayana,Assistant Foremen,Pulp Mill & Chipper
+137641,Boddu Kumara Swamy,Assistant Foremen,Pulp Mill & Chipper
+137696,Jonnala Naresh Kumar,Assistant Process Controller,Pulp Mill & Chipper
+137817,P.Thirupathi,Assistant Officer,Pulp Mill & Chipper
+138147,M.Maruthi,Assistant Process Controller,Pulp Mill & Chipper
+22001275,Palitya Vilas,Assistant Officer,Pulp Mill & Chipper
+137674,Mekala Anjaneyulu,Assistant Process Controller,Pulp Mill & Chipper
+137850,Rahul A Khadilkar,Assistant Foremen,Pulp Mill & Chipper
+137883,Niraj Gupta,Assistant Foremen,Pulp Mill & Chipper
+137971,Subhash Kumar Dinanath Shahu,Assistant Foremen,Pulp Mill & Chipper
+138730,Deepak Arjun Ghate,Assistant Foremen,Pulp Mill & Chipper
+137993,I.Satyanarayana,Assistant Foremen,Pulp Mill & Chipper
+22001596,Raju Madhusudhan Wangawar,Assistant Foremen,Pulp Mill & Chipper
+137982,D.Santhosh,Assistant Foremen,Pulp Mill & Chipper
+138037,G.Prabhakar,Assistant Foremen,Pulp Mill & Chipper
+138455,Shrinivas Prasad Rao,Junior Foremen,Pulp Mill & Chipper
+250533,Baldav Prasad Verma,Junior Foremen,Pulp Mill & Chipper
+22000449,Mallethula Ravi Kumar,Junior Officer,Pulp Mill & Chipper
+22001402,Thuraka Rani,Junior Officer,Pulp Mill & Chipper
+22001704,Sarthak Balasaheb Dongare,Engineer Trainee,Pulp Mill & Chipper
+22001359,Sandeep Chaudhary,Junior Officer,Pulp Mill & Chipper
+22001445,Konga Shailaja,Junior Officer,Pulp Mill & Chipper
+22001477,Biyala Sai Kumar,Junior Officer,Pulp Mill & Chipper
+22001403,M.N.V. Satyanarayana,Senior Manager,Pulp Mill Mechanical
+130636,Nathulal,Deputy Manager,Pulp Mill Mechanical
+22001120,Sheikh Javid,Assistant Manager,Pulp Mill Mechanical
+22001563,Gangadhar Panigrahi,Assistant Manager,Pulp Mill Mechanical
+135837,N.Praveen Satyaraj,Senior Engineer,Pulp Mill Mechanical
+137707,B.Sai Krishna Basava,Senior Engineer,Pulp Mill Mechanical
+22000440,Md.Farhat Sheikh,Senior Engineer,Pulp Mill Mechanical
+138004,L.Sandeep Kumar,Chief Manager,Purchase
+123988,Shyam Sunder Vyas,Assistant Manager,Purchase
+22000132,Abhinav Agrawal,Assistant Manager,Purchase
+22000628,Kanti Raja Sekhar,Assistant Manager,Purchase
+123319,N.Rajendra Prasad,Officer,Purchase
+133958,Amit Kumar Singh,Officer,Purchase
+22001632,Bappi Borado,Officer,Purchase
+22000673,Satyanarayan Thakur,Junior Officer,Purchase
+15004309,Laxman V. Chaudhari,DGM,Quality Control
+22000606,Shyam Babu Yadav,Manager,Quality Control
+22001754,Mailapalli Lakshmana Rao,Deputy Manager,Quality Control
+125940,N.Ravindar,Assistant Manager,Quality Control
+22001745,Boddu Suresh Kumar,Assistant Manager,Quality Control
+22000273,Pushpendra Kumar,Senior Officer,Quality Control
+22001138,Chandan Kumar Sahu,Senior Officer,Quality Control
+15004571,Vishal Kumar Singh,Sr. Executive,Quality Control
+22001372,Sudhakar Pradhan,Officer,Quality Control
+123773,K.Ranga Rao II,Officer,Quality Control
+131725,B.Maheshwar,Officer,Quality Control
+132187,Chaple Raju,Officer,Quality Control
+132330,Vemula Venugopal,Officer,Quality Control
+22001643,Darshanala Raj Kumar,Officer,Quality Control
+22001680,Vijil Arun Mahehskar,Officer,Quality Control
+125428,M Krishna Kishore,Assistant Officer,Quality Control
+128876,G.Ilaiah,Assistant Officer,Quality Control
+129162,S.Muralidhar,Assistant Officer,Quality Control
+132099,Maulkar Narayana,Assistant Officer,Quality Control
+132209,Renukuntla Srinivas,Assistant Officer,Quality Control
+132242,Bandi Ramesh,Assistant Officer,Quality Control
+132297,Chityala Rajeswar,Assistant Officer,Quality Control
+132858,Boga Nagaraju,Assistant Officer,Quality Control
+132869,K.Mahendar,Assistant Officer,Quality Control
+132891,T.Sandeep Kumar,Assistant Officer,Quality Control
+134024,R.Ramu,Assistant Officer,Quality Control
+134035,Durgam Srinivas,Assistant Officer,Quality Control
+22001370,Chinta shiva Krishna,Assistant Officer,Quality Control
+132198,Dongri Srinivas,Assistant Officer,Quality Control
+22000450,Lokandi Aganna,Assistant Officer,Quality Control
+22000452,Bandi Anil Kumar,Assistant Officer,Quality Control
+132880,D.Ravi Kumar,Assistant Officer,Quality Control
+22000732,Dandera Ramesh,Assistant Officer,Quality Control
+22000733,Vemula Mahesh,Assistant Officer,Quality Control
+22000990,Ankush Kumar Jha,Assistant Officer,Quality Control
+127617,Vikas Kumar Nayak,Junior Officer,Quality Control
+131714,P.Ram Kumar,Junior Officer,Quality Control
+133980,A.Satyanarayana,Junior Officer,Quality Control
+22001019,Abhishek Kumar Mishra,Junior Officer,Quality Control
+22001682,Ramayanam Dooly,Officer,Quality Control
+22001692,Gundeti Lavanya,Junior Officer,Quality Control
+137113,Santosh Damodhar Thepale,Senior Manager,Raw Material
+22000653,Girimallappa Vittal Korti,Senior Manager,Raw Material
+22000492,Srinivas Rao Kari,Manager,Raw Material
+22000970,Anna Ramakrishna,Manager,Raw Material
+22000608,Ramakrishna Lalam,Deputy Manager,Raw Material
+22001562,Umakant,Deputy Manager,Raw Material
+22001681,Vikas Singh,Deputy Manager,Raw Material
+22000239,N.Satya Kanna Babu,Deputy Manager,Raw Material
+125020,N.K.Lodha,Assistant Manager,Raw Material
+137014,Subhash Chand,Assistant Manager,Raw Material
+22000801,Vishal Mahadeo More,Assistant Manager,Raw Material
+22001476,Manoj Kumar,Assistant Manager,Raw Material
+22001496,Rajesh R,Assistant Manager,Raw Material
+22001536,Bhupendra Singh,Assistant Manager,Raw Material
+138213,Matam Sridhar,Assistant Manager,Raw Material
+138609,Chippa Mahesh,Assistant Manager,Raw Material
+22000764,Suryawanshi Anand Prakash,Assistant Manager,Raw Material
+22000889,E.Vasudeva rao,Assistant Manager,Raw Material
+22001064,Paidakula Bhakthesh,Assistant Manager,Raw Material
+22001087,Ramesh Kistayya Pupalwar,Senior Officer,Raw Material
+22001150,A.T.Naveen Kumar,Senior Officer,Raw Material
+22000228,Akkala Rajesh,Senior Officer,Raw Material
+22001542,N.S.M.V.Sastry,Senior Officer,Raw Material
+22001657,Medishetty Mahender,Senior Officer,Raw Material
+22000674,Dhiraj Linganna Deshattiwar,Senior Officer,Raw Material
+132924,Varla Kotesh,Officer,Raw Material
+138598,Karnadham Sai Prasad,Officer,Raw Material
+515526,S.M.Basha,Officer,Raw Material
+22000262,Ganesh Rajayya Yellewar,Officer,Raw Material
+22000371,Madisetti Srinivas,Officer,Raw Material
+22000841,Chunchu Mahesh,Officer,Raw Material
+22000842,Namabathula A.Raviteja,Officer,Raw Material
+22000985,Ashish Kumar Ojha,Officer,Raw Material
+22001246,Sree Hari,Officer,Raw Material
+22001182,Kakani Pushparaju,Officer,Raw Material
+22001236,Saniya Tarannum,Officer,Raw Material
+22001599,Pittam Venkateswara Reddy,Officer,Raw Material
+22001641,Thopucharla Anil,Officer,Raw Material
+22001469,Kunde Kumaraswamy,Officer,Raw Material
+139555,Cherukuthota Rahul,Assistant Officer,Raw Material
+22000786,Sunkara Deny Kumar,Assistant Officer,Raw Material
+22001052,Kathigama Sailu,Assistant Officer,Raw Material
+22001137,Mukesh Jha,Assistant Officer,Raw Material
+22001157,Gorla Rajkumar,Assistant Officer,Raw Material
+132605,Ilmul Haq,Junior Officer,Raw Material
+516085,O.Sudhakar,Junior Officer,Raw Material
+22000457,Parvind Kumar Mishra,Junior Officer,Raw Material
+22000810,Tallapelli Sathaiah,Junior Officer,Raw Material
+22000977,Chenaboina Sai Kumar,Junior Officer,Raw Material
+22000978,Mallethula Srikanth,Junior Officer,Raw Material
+22000994,Niranjan Jha,Junior Officer,Raw Material
+22001653,Bochu Jeevan,Officer,Raw Material
+22001666,Kuraku Manohar Reddy,Officer,Raw Material
+22001675,Muthyala Chandana,Officer,Raw Material
+22001679,Muthyala Naresh,Officer,Raw Material
+22001683,Nampalli Sai Chaitanya,Management Trainee,Raw Material
+22001717,Gongati Srivardhan Reddy,Officer,Raw Material
+139159,Dhirendra Kumar Behera,Chief Manager,Raw Material - Yard
+124243,G.Rajendra Kumar,Senior Officer,Raw Material - Yard
+125757,E.Ramesh,Senior Officer,Raw Material - Yard
+123762,Pramod Kumar,Assistant Officer,Raw Material - Yard
+125666,T.Venugopal,Assistant Officer,Raw Material - Yard
+126750,Y.Satish Kumar,Assistant Officer,Raw Material - Yard
+132451,Saumak Sarkar,Assistant Officer,Raw Material - Yard
+126272,Tadepally Sreedhar,Assistant Officer,Raw Material - Yard
+135299,V.Sridhar,Assistant Officer,Raw Material - Yard
+133804,Y.Jyothish Babu,Assistant Officer,Raw Material - Yard
+22001344,Bhaskar Pant,Chief Manager,Recovery Island
+138092,Swapnil Arun Choudhary,Manager,Recovery Island
+128117,Kamlesh Kumar Singh,Deputy Manager,Recovery Island
+22001010,Ashish Kumar Shukla,Assistant Manager,Recovery Island
+22001348,Surendra Srivastava,Assistant Manager,Recovery Island
+124732,A.Ramesh,Senior Officer,Recovery Island
+125348,Anil Kumar Duratkar,Senior Officer,Recovery Island
+22001352,Amit Tundilal Bisane,Senior Officer,Recovery Island
+22000541,Dilli Pavankalyan Reddy,Shift Incharge,Recovery Island
+138917,Fakira Ganpati Ramteke,Foremen,Recovery Island
+22001535,Neeraj Dhariyal,Shift Incharge,Recovery Island
+22001418,Gaddamedi Aravind,Shift Incharge,Recovery Island
+22001421,Vadderapu ramesh babu,Shift Incharge,Recovery Island
+124867,S.Susheel Kumar,Assistant Officer,Recovery Island
+123795,Virendra Kumar,Assistant Officer,Recovery Island
+127691,B.Kiran Kumar,Assistant Officer,Recovery Island
+132363,Pudari Srinivas,Assistant Officer,Recovery Island
+132429,P.Shiva Kumar,Assistant Officer,Recovery Island
+137344,Dilip Sahu,Assistant Officer,Recovery Island
+138565,Shaik Mohammed Nazeer Ahmed,Assistant Officer,Recovery Island
+138587,Akshaya Kumar Swain,Assistant Officer,Recovery Island
+22001132,Krishna Chandraiah Kampelli,Assistant Foremen,Recovery Island
+132165,Cherala Shekar,Assistant Officer,Recovery Island
+22000376,Sanjay Vyas Muni Tiwari,Assistant Officer,Recovery Island
+132058,Md.Rizwan Ali,Junior Officer,Recovery Island
+22001702,Pratik Shrikrushnaji Chikne,Engineer Trainee,Recovery Island
+22001494,Lalit Nial,Jr. Officer - Trainee,Recovery Island
+22000384,Kiran Kumar Tivari,Chief Manager,Sales & Logistics
+137960,Ravindra Kumar Velpula,Deputy Manager,Sales & Logistics
+139423,Zahed Pasha,Manager,Sales & Logistics
+123977,Sanjay Kumar Mall,Assistant Manager,Sales & Logistics
+139038,Shiv Shyam Yadav,Assistant Manager,Sales & Logistics
+135925,Giriraj Asawa,Senior Officer,Sales & Logistics
+123660,K.Dasarath,Officer,Sales & Logistics
+125086,Mohd.Sadique,Officer,Sales & Logistics
+132781,Shaik Rizwan,Officer,Sales & Logistics
+133936,Binod Kumar,Officer,Sales & Logistics
+22001503,Ashwani Kumar Mishra,Officer,Sales & Logistics
+133870,S.Mahender,Assistant Officer,Sales & Logistics
+127811,Rapelli Srinivasa Rao,Junior Officer,Sales & Logistics
+133881,K.Satish Kumar Yadav,Junior Officer,Sales & Logistics
+138114,Vijay B Singh,Senior Manager,Stores
+123591,K.S.Shukla,Deputy Manager,Stores
+125644,E.Padma Rao,Senior Officer,Stores
+127946,J.Venkatesham,Officer,Stores
+22000926,V.Vani,Officer,Stores
+132220,Chilkuri Mahesh,Officer,Stores
+126727,G.Sampat Kumar,Assistant Officer,Stores
+22001306,Saurabh Mishra,Assistant Officer,Stores
+22001028,Kasturi Mahesh,Junior Officer,Stores
+22001470,Sneha Manna,Engineer Trainee,Stores
+123024,K.Nageshwar Rao,Senior Manager,Works office
+22000148,Asad Ullah Khan,Senior Manager,TQM
+10000325,Roop Kishore Vashistha,Assistant Manager,TQM
+127877,K.Siva Kumar,Assistant Officer,TQM
+22001131,Parvathi shyam sunder,Junior Officer,TQM
+22001250,Sk.Irfan,Junior Officer,TQM
+22001073,Satish Pal,Driver,Delhi Office
