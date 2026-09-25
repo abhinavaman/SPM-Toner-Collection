@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -17,1311 +17,1399 @@
         href="{{ url_for('static', filename='style.css') }}"
     >
 
-    <style>
 
-        .main-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 420px;
-            gap: 20px;
-            align-items: start;
-        }
-
-        .stock-panel {
-            position: sticky;
-            top: 20px;
-        }
-
-        .stock-card {
-            background: white;
-            border-radius: 12px;
-            padding: 18px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        .stock-list {
-            max-height: 650px;
-            overflow-y: auto;
-        }
-
-        .stock-item {
-            padding: 14px 4px;
-            border-bottom: 1px solid #eeeeee;
-        }
-
-        .stock-main {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .stock-name {
-            font-size: 13px;
-            line-height: 1.4;
-            flex: 1;
-        }
-
-        .stock-code {
-            color: #777;
-            font-size: 11px;
-            margin-top: 3px;
-        }
-
-        .stock-right {
-            text-align: right;
-            min-width: 90px;
-        }
-
-        .stock-qty {
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .stock-good {
-            color: #16803c;
-        }
-
-        .stock-low {
-            color: #d97706;
-        }
-
-        .stock-empty {
-            color: #dc2626;
-        }
-
-        .stock-actions {
-            display: flex;
-            gap: 6px;
-            justify-content: flex-end;
-            margin-top: 9px;
-            flex-wrap: wrap;
-        }
-
-        .stock-actions button {
-            border: none;
-            border-radius: 6px;
-            padding: 6px 9px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .add-stock-btn {
-            background: #16803c;
-            color: white;
-        }
-
-        .edit-stock-btn {
-            background: #2563eb;
-            color: white;
-        }
-
-        .stock-form {
-            display: none;
-            margin-top: 10px;
-            padding: 12px;
-            background: #f7f7f7;
-            border-radius: 8px;
-        }
-
-        .stock-form.active {
-            display: block;
-        }
-
-        .stock-form-title {
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .stock-form input {
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 8px;
-        }
-
-        .stock-form-actions {
-            display: flex;
-            gap: 6px;
-        }
-
-        .stock-save {
-            background: #16803c;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 7px 12px;
-            cursor: pointer;
-        }
-
-        .stock-cancel {
-            background: #777;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 7px 12px;
-            cursor: pointer;
-        }
-
-        .stock-note {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 14px;
-        }
-
-        @media (max-width: 1000px) {
-
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .stock-panel {
-                position: static;
-            }
-
-        }
-
-    </style>
+<style>
+/* Export panel slides down from the top */
+.export-slide {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-width: 0;
+    transform: translateY(-12px);
+    transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.4s ease, margin 0.4s ease, padding 0.4s ease;
+}
+.export-slide.open {
+    max-height: 500px;
+    opacity: 1;
+    margin: 0 0 24px 0;
+    padding-top: 22px !important;
+    padding-bottom: 22px !important;
+    border-width: 1px;
+    transform: translateY(0);
+}
+</style>
 
 </head>
 
 
 <body>
 
+<div class="app-shell">
 
-<header>
 
-    <div class="header-left">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-        <img
-            src="{{ url_for('static', filename='spm_logo.png') }}"
-            alt="Sirpur Paper Mills Logo"
-            class="spm-logo"
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <img
+                src="{{ url_for('static', filename='spm_logo.png') }}"
+                alt="SPM"
+            >
+
+        </div>
+
+
+        <nav class="side-nav">
+
+            <a href="#dashboard">
+                ⌂
+                <span>Dashboard</span>
+            </a>
+
+
+            <a
+                class="active"
+                href="#collection"
+            >
+                ▣
+                <span>Record Collection</span>
+            </a>
+
+
+            <a href="#stock">
+
+                ◇
+
+                <span>
+                    Toner Stock
+                </span>
+
+            </a>
+
+
+            <a href="#history">
+
+                ◴
+
+                <span>
+                    Collection History
+                </span>
+
+            </a>
+
+
+            <a
+                href="#exportBox"
+                onclick="toggleExportBox(); return false;"
+            >
+
+                ⇩
+
+                <span>
+                    Export CSV
+                </span>
+
+            </a>
+
+                </nav>
+
+        <!-- Night Mode -->
+        <div class="night-mode">
+            <span class="night-mode-label">
+                🌙
+                <span>Night Mode</span>
+            </span>
+
+            <label class="toggle-switch">
+                <input
+                    type="checkbox"
+                    id="nightModeToggle"
+                    onchange="toggleNightMode()"
+                >
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+
+        <div class="sidebar-bottom">
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="content">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header
+            class="topbar"
+            id="dashboard"
         >
 
-        <div>
-
-            <h1>SPM Toner Management</h1>
-
-            <p>
-                Digital Toner Collection & Stock Management
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <button
-        type="button"
-        class="btn light"
-        onclick="toggleExportBox()"
-    >
-        Export CSV
-    </button>
-
-</header>
-
-
-<!-- =====================================================
-     EXPORT
-===================================================== -->
-
-<section
-    id="exportBox"
-    class="export-box"
-    style="display:none;"
->
-
-    <h2>Export Records</h2>
-
-
-    <form
-        method="get"
-        action="/export"
-    >
-
-        <div class="grid">
-
-
-            <label>
-
-                Start Date
-
-                <input
-                    type="date"
-                    name="start_date"
-                    id="start_date"
-                >
-
-            </label>
-
-
-            <label>
-
-                End Date
-
-                <input
-                    type="date"
-                    name="end_date"
-                    id="end_date"
-                >
-
-            </label>
-
-
-            <label>
-
-                Department
-
-                <select
-                    name="department"
-                    id="department_export"
-                >
-
-                    <option value="">
-                        All Departments
-                    </option>
-
-                    {% for dept in departments %}
-
-                        <option
-                            value="{{ dept.department }}"
-                        >
-                            {{ dept.department }}
-                        </option>
-
-                    {% endfor %}
-
-                </select>
-
-            </label>
-
-
-        </div>
-
-
-        <div class="quick-export">
-
-            <strong>
-                Quick Range:
-            </strong>
-
-
-            <button
-                type="button"
-                class="btn"
-                onclick="setExportRange(1)"
-            >
-                1 Month
-            </button>
-
-
-            <button
-                type="button"
-                class="btn"
-                onclick="setExportRange(2)"
-            >
-                2 Months
-            </button>
-
-
-            <button
-                type="button"
-                class="btn clear"
-                onclick="clearExportFilters()"
-            >
-                Clear
-            </button>
-
-        </div>
-
-
-        <div class="export-actions">
-
-            <button
-                type="submit"
-                class="btn"
-            >
-                Export CSV
-            </button>
-
-
-            <button
-                type="button"
-                class="btn clear"
-                onclick="closeExportBox()"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-    </form>
-
-</section>
-
-
-<main>
-
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-
-    {% for cat, msg in messages %}
-
-        <div class="alert {{ cat }}">
-            {{ msg }}
-        </div>
-
-    {% endfor %}
-
-{% endwith %}
-
-
-<div class="main-layout">
-
-
-<!-- =====================================================
-     LEFT SIDE
-===================================================== -->
-
-<div>
-
-
-    <!-- STATISTICS -->
-
-    <div class="stats">
-
-        <div>
-
-            <small>
-                Total records
-            </small>
-
-            <b>
-                {{ total }}
-            </b>
-
-        </div>
-
-
-        <div>
-
-            <small>
-                Unique employees
-            </small>
-
-            <b>
-                {{ people }}
-            </b>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         COLLECTION FORM
-    ================================================= -->
-
-    <section>
-
-        <h2>
-            📋 Record Toner Collection
-        </h2>
-
-
-        <form
-            method="post"
-            action="/submit"
-        >
-
-
-            <div class="grid">
-
-
-                <!-- Employee Code -->
-
-                <label>
-
-                    Employee Code *
-
-                    <input
-                        name="employee_id"
-                        id="employee_id"
-                        placeholder="e.g. 139300"
-                        required
-                    >
-
-                </label>
-
-
-                <!-- Employee Name -->
-
-                <label>
-
-                    Employee Name
-
-                    <input
-                        id="employee_name"
-                        readonly
-                        placeholder="Automatically fetched"
-                    >
-
-                </label>
-
-
-                <!-- Designation -->
-
-                <label>
-
-                    Designation
-
-                    <input
-                        id="designation"
-                        readonly
-                        placeholder="Automatically fetched"
-                    >
-
-                </label>
-
-
-                <!-- Department -->
-
-                <label>
-
-                    Department
-
-                    <input
-                        id="department"
-                        readonly
-                        placeholder="Automatically fetched"
-                    >
-
-                </label>
-
-
-                <!-- TONER -->
-
-                <label>
-
-                    Toner *
-
-                    <select
-                        name="item_code"
-                        id="item_code"
-                        required
-                    >
-
-                        <option value="">
-                            Select Toner
-                        </option>
-
-
-                        {% for code, name in toner_master %}
-
-                            <option
-                                value="{{ code }}"
-                            >
-
-                                {{ code }} -
-                                {{ name }}
-
-                            </option>
-
-                        {% endfor %}
-
-
-                    </select>
-
-                </label>
-
-
-                <!-- Quantity -->
-
-                <label>
-
-                    Quantity *
-
-                    <input
-                        type="number"
-                        name="quantity"
-                        min="1"
-                        value="1"
-                        required
-                    >
-
-                </label>
-
-
-                <!-- Date -->
-
-                <label>
-
-                    Collection Date *
-
-                    <input
-                        type="date"
-                        name="collection_date"
-                        required
-                    >
-
-                </label>
-
-
-                <!-- Remarks -->
-
-                <label>
-
-                    Remarks
-
-                    <input
-                        name="remarks"
-                        placeholder="Optional"
-                    >
-
-                </label>
-
+            <div>
+
+                <h1>
+                    Toner Management
+                </h1>
+
+                <p>
+                    Digital Toner Collection &amp; Stock Management
+                </p>
 
             </div>
 
 
-            <button
-                class="btn"
-                type="submit"
-            >
-                Save Record
-            </button>
+            <div class="top-actions">
 
 
-        </form>
+                <div class="date-box">
 
-    </section>
-
-
-    <!-- =================================================
-         COLLECTION HISTORY
-    ================================================= -->
-
-    <section>
+                    <span>
+                        ▣
+                    </span>
 
 
-        <div class="title">
+                    <div>
 
-            <h2>
-                📋 Recent Collections
-            </h2>
+                        <b id="todayDate">
+                            Today
+                        </b>
 
-            <span>
-                {{ total }} record(s)
-            </span>
+                        <small id="todayTime"></small>
 
-        </div>
+                    </div>
 
-
-        <!-- SEARCH -->
-
-        <form
-            method="get"
-            action="/"
-        >
-
-            <div class="search-box">
-
-
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Search employee, ID, department or toner..."
-                    value="{{ search }}"
-                >
+                </div>
 
 
                 <button
-                    class="btn"
-                    type="submit"
+                    class="export-top"
+                    type="button"
+                    onclick="toggleExportBox()"
                 >
-                    Search
+
+                    ⇩
+
+                    &nbsp;
+
+                    Export CSV
+
                 </button>
 
+            </div>
 
-                {% if search %}
+        </header>
 
-                    <a
-                        href="/"
-                        class="btn clear"
+        <!-- EXPORT RECORDS - SLIDES DOWN FROM TOP -->
+        <section id="exportBox" class="export-box panel export-slide">
+            <div class="panel-title">
+                <span class="title-icon blue">⇩</span>
+                <h2>Export Records</h2>
+            </div>
+            <form method="get" action="/export">
+                <div class="export-grid">
+                    <label>
+                        Start Date
+                        <input type="date" name="start_date" id="start_date">
+                    </label>
+                    <label>
+                        End Date
+                        <input type="date" name="end_date" id="end_date">
+                    </label>
+                    <label>
+                        Department
+                        <select name="department" id="department_export">
+                            <option value="">All Departments</option>
+                            {% for dept in departments %}
+                                <option value="{{ dept.department }}">{{ dept.department }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                <div class="export-actions">
+                    <button type="submit" class="save-btn small">Export CSV</button>
+                    <button type="button" class="clear-btn" onclick="clearExportFilters()">Clear</button>
+                    <button type="button" class="clear-btn" onclick="closeExportBox()">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+
+
+
+        <!-- =================================================
+             FLASH MESSAGES
+        ================================================== -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% for cat, msg in messages %}
+
+                <div class="alert {{ cat }}">
+                    {{ msg }}
+                </div>
+
+            {% endfor %}
+
+        {% endwith %}
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats-row">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ▤
+                </div>
+
+
+                <div>
+
+                    <b>
+                        {{ total }}
+                    </b>
+
+                    <span>
+                        Total Records
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    ♙
+                </div>
+
+
+                <div>
+
+                    <b>
+                        {{ people }}
+                    </b>
+
+                    <span>
+                        Unique Employees
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ◇
+                </div>
+
+
+                <div>
+
+                    <b>
+                        {{ toner_master|length }}
+                    </b>
+
+                    <span>
+                        Toner Types
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             DASHBOARD GRID
+        ================================================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- =============================================
+                 LEFT COLUMN
+            ============================================== -->
+
+            <div class="left-column">
+
+
+                <!-- =========================================
+                     COLLECTION FORM
+                ========================================== -->
+
+                <section
+                    class="panel collection-panel"
+                    id="collection"
+                >
+
+
+                    <div class="panel-title">
+
+                        <span class="title-icon green">
+                            ▤
+                        </span>
+
+                        <h2>
+                            Record Toner Collection
+                        </h2>
+
+                    </div>
+
+
+
+                    <form
+                        method="post"
+                        action="/submit"
                     >
-                        Clear
-                    </a>
 
-                {% endif %}
+
+                        <div class="form-grid">
+
+
+                            <!-- Employee Code -->
+
+                            <label>
+
+                                Employee Code
+                                <em>*</em>
+
+
+                                <div class="input-search">
+
+                                    <input
+                                        name="employee_id"
+                                        id="employee_id"
+                                        placeholder="e.g. 139300"
+                                        required
+                                    >
+
+
+                                    <button
+                                        type="button"
+                                        onclick="fetchEmployee()"
+                                    >
+                                        ⌕
+                                    </button>
+
+                                </div>
+
+                            </label>
+
+
+
+                            <!-- Employee Name -->
+
+                            <label>
+
+                                Employee Name
+
+                                <input
+                                    id="employee_name"
+                                    readonly
+                                    placeholder="Automatically fetched"
+                                >
+
+                            </label>
+
+
+
+                            <!-- Designation -->
+
+                            <label>
+
+                                Designation
+
+                                <input
+                                    id="designation"
+                                    readonly
+                                    placeholder="Automatically fetched"
+                                >
+
+                            </label>
+
+
+
+                            <!-- Department -->
+
+                            <label>
+
+                                Department
+
+                                <input
+                                    id="department"
+                                    readonly
+                                    placeholder="Automatically fetched"
+                                >
+
+                            </label>
+
+
+
+                            <!-- Toner -->
+
+                            <label>
+
+                                Toner
+                                <em>*</em>
+
+
+                                <select
+                                    name="item_code"
+                                    id="item_code"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select Toner
+                                    </option>
+
+
+                                    {% for code, name in toner_master %}
+
+                                        <option value="{{ code }}">
+
+                                            {{ code }}
+                                            -
+                                            {{ name }}
+
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </label>
+
+
+
+                            <!-- Quantity -->
+
+                            <label>
+
+                                Quantity
+                                <em>*</em>
+
+
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    min="1"
+                                    value="1"
+                                    required
+                                >
+
+                            </label>
+
+
+
+                            <!-- Collection Date -->
+
+                            <label>
+
+                                Collection Date
+                                <em>*</em>
+
+
+                                <input
+                                    type="date"
+                                    name="collection_date"
+                                    id="collection_date"
+                                    required
+                                >
+
+                            </label>
+
+
+
+                            <!-- Remarks -->
+
+                            <label>
+
+                                Remarks
+
+
+                                <input
+                                    name="remarks"
+                                    placeholder="Optional"
+                                >
+
+                            </label>
+
+
+                        </div>
+
+
+
+                        <!-- SAVE -->
+
+                        <button
+                            class="save-btn"
+                            type="submit"
+                        >
+
+                            ➤
+
+                            &nbsp;
+
+                            Save Record
+
+                        </button>
+
+
+                    </form>
+
+
+                </section>
+
+
+
+                <!-- =========================================
+                     EXPORT RECORDS
+                     
+                     MOVED HERE
+                     DIRECTLY BELOW SAVE RECORD
+                ========================================== -->
+
+
+
+
+                <!-- =========================================
+                     RECENT COLLECTIONS
+                ========================================== -->
+
+                <section
+                    class="panel history-panel"
+                    id="history"
+                >
+
+
+                    <div class="panel-title history-title">
+
+
+                        <span class="title-icon green">
+                            ◷
+                        </span>
+
+
+                        <h2>
+                            Recent Collections
+                        </h2>
+
+
+                        <span class="record-count">
+
+                            {{ total }}
+
+                            record(s)
+
+                        </span>
+
+
+                    </div>
+
+
+
+                    <!-- Search -->
+
+                    <form
+                        method="get"
+                        action="/"
+                        class="search-row"
+                    >
+
+
+                        <input
+                            name="search"
+                            value="{{ search }}"
+                            placeholder="Search employee, ID, department or toner..."
+                        >
+
+
+                        <button type="submit">
+
+                            ⌕
+
+                            &nbsp;
+
+                            Search
+
+                        </button>
+
+
+                        <a
+                            href="/"
+                            class="clear-btn"
+                        >
+
+                            Clear
+
+                        </a>
+
+
+                    </form>
+
+
+
+                    <!-- Table -->
+
+                    <div class="table-wrap">
+
+
+                        <table>
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        ID
+                                    </th>
+
+                                    <th>
+                                        Employee
+                                    </th>
+
+                                    <th>
+                                        Employee ID
+                                    </th>
+
+                                    <th>
+                                        Department
+                                    </th>
+
+                                    <th>
+                                        Toner
+                                    </th>
+
+                                    <th>
+                                        Qty
+                                    </th>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Remarks
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+
+                            <tbody>
+
+
+                                {% for r in rows %}
+
+
+                                    <tr>
+
+
+                                        <td>
+                                            {{ r.id }}
+                                        </td>
+
+
+                                        <td>
+                                            {{ r.employee_name }}
+                                        </td>
+
+
+                                        <td>
+                                            {{ r.employee_id }}
+                                        </td>
+
+
+                                        <td>
+                                            {{ r.department }}
+                                        </td>
+
+
+                                        <td>
+                                            {{ r.toner_type }}
+                                        </td>
+
+
+                                        <td>
+                                            {{ r.quantity }}
+                                        </td>
+
+
+                                        <td>
+                                            {{ r.collection_date }}
+                                        </td>
+
+
+                                        <td>
+                                            {{ r.remarks or "-" }}
+                                        </td>
+
+
+                                    </tr>
+
+
+                                {% else %}
+
+
+                                    <tr>
+
+                                        <td
+                                            colspan="8"
+                                            class="empty"
+                                        >
+
+                                            No records found.
+
+                                        </td>
+
+                                    </tr>
+
+
+                                {% endfor %}
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </section>
 
 
             </div>
 
-        </form>
 
 
-        <!-- TABLE -->
+            <!-- =============================================
+                 RIGHT STOCK PANEL
+            ============================================== -->
 
-        <div class="table">
+            <aside
+                class="stock-panel panel"
+                id="stock"
+            >
 
-            <table>
 
+                <!-- Stock Header -->
 
-                <thead>
+                <div class="stock-header">
 
-                    <tr>
 
-                        <th>
-                            ID
-                        </th>
+                    <div class="panel-title compact">
 
-                        <th>
-                            Employee
-                        </th>
 
-                        <th>
-                            Employee ID
-                        </th>
+                        <span class="title-icon green">
+                            ▣
+                        </span>
 
-                        <th>
-                            Department
-                        </th>
 
-                        <th>
-                            Toner
-                        </th>
-
-                        <th>
-                            Qty
-                        </th>
-
-                        <th>
-                            Date
-                        </th>
-
-                        <th>
-                            Remarks
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-
-                {% for r in rows %}
-
-                    <tr>
-
-                        <td>
-                            {{ r.id }}
-                        </td>
-
-                        <td>
-                            {{ r.employee_name }}
-                        </td>
-
-                        <td>
-                            {{ r.employee_id }}
-                        </td>
-
-                        <td>
-                            {{ r.department }}
-                        </td>
-
-                        <td>
-                            {{ r.toner_type }}
-                        </td>
-
-                        <td>
-                            {{ r.quantity }}
-                        </td>
-
-                        <td>
-                            {{ r.collection_date }}
-                        </td>
-
-                        <td>
-                            {{ r.remarks or "-" }}
-                        </td>
-
-                    </tr>
-
-                {% else %}
-
-                    <tr>
-
-                        <td colspan="8">
-                            No records found.
-                        </td>
-
-                    </tr>
-
-                {% endfor %}
-
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-
-    </section>
-
-
-</div>
-
-
-<!-- =====================================================
-     RIGHT SIDE — LIVE STOCK
-===================================================== -->
-
-<div class="stock-panel">
-
-
-    <div class="stock-card">
-
-
-        <div class="title">
-
-            <h2>
-                📦 Live Toner Stock
-            </h2>
-
-        </div>
-
-
-        <p class="stock-note">
-            Collection automatically decreases stock.
-            Use <b>Add Stock</b> when new stock arrives and
-            <b>Edit Stock</b> when the current stock number needs correction.
-        </p>
-
-
-        <div class="stock-list">
-
-
-            {% for item in stock %}
-
-
-                <div class="stock-item">
-
-
-                    <div class="stock-main">
-
-
-                        <div class="stock-name">
-
-                            <strong>
-                                {{ item.toner_name }}
-                            </strong>
-
-                            <div class="stock-code">
-                                {{ item.item_code }}
-                            </div>
-
-                        </div>
-
-
-                        <div class="stock-right">
-
-
-                            {% if item.quantity == 0 %}
-
-                                <div class="stock-qty stock-empty">
-                                    0
-                                </div>
-
-                                <small class="stock-empty">
-                                    Out of Stock
-                                </small>
-
-
-                            {% elif item.quantity <= 5 %}
-
-                                <div class="stock-qty stock-low">
-                                    {{ item.quantity }}
-                                </div>
-
-                                <small class="stock-low">
-                                    Low Stock
-                                </small>
-
-
-                            {% else %}
-
-                                <div class="stock-qty stock-good">
-                                    {{ item.quantity }}
-                                </div>
-
-                                <small class="stock-good">
-                                    Available
-                                </small>
-
-                            {% endif %}
-
-
-                        </div>
+                        <h2>
+                            Live Toner Stock
+                        </h2>
 
 
                     </div>
 
 
-                    <!-- ACTION BUTTONS -->
+                    <span class="items-pill">
 
-                    <div class="stock-actions">
+                        {{ toner_master|length }}
 
+                        items
 
-                        <button
-                            type="button"
-                            class="add-stock-btn"
-                            onclick="toggleStockForm('add-{{ item.item_code }}')"
-                        >
-                            ➕ Add Stock
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="edit-stock-btn"
-                            onclick="toggleStockForm('edit-{{ item.item_code }}')"
-                        >
-                            ✏️ Edit Stock
-                        </button>
-
-
-                    </div>
-
-
-                    <!-- ADD STOCK FORM -->
-
-                    <div
-                        id="add-{{ item.item_code }}"
-                        class="stock-form"
-                    >
-
-                        <div class="stock-form-title">
-                            Add Stock
-                        </div>
-
-                        <div style="font-size:12px;margin-bottom:8px;">
-                            Current stock:
-                            <b>{{ item.quantity }}</b>
-                        </div>
-
-
-                        <form
-                            method="post"
-                            action="/add-stock"
-                        >
-
-                            <input
-                                type="hidden"
-                                name="stock_item_code"
-                                value="{{ item.item_code }}"
-                            >
-
-
-                            <input
-                                type="number"
-                                name="stock_quantity"
-                                min="1"
-                                placeholder="Quantity to add"
-                                required
-                            >
-
-
-                            <div class="stock-form-actions">
-
-                                <button
-                                    type="submit"
-                                    class="stock-save"
-                                >
-                                    Add
-                                </button>
-
-
-                                <button
-                                    type="button"
-                                    class="stock-cancel"
-                                    onclick="toggleStockForm('add-{{ item.item_code }}')"
-                                >
-                                    Cancel
-                                </button>
-
-                            </div>
-
-                        </form>
-
-                    </div>
-
-
-                    <!-- EDIT STOCK FORM -->
-
-                    <div
-                        id="edit-{{ item.item_code }}"
-                        class="stock-form"
-                    >
-
-                        <div class="stock-form-title">
-                            Edit Stock
-                        </div>
-
-                        <div style="font-size:12px;margin-bottom:8px;">
-                            Current stock:
-                            <b>{{ item.quantity }}</b>
-                        </div>
-
-
-                        <form
-                            method="post"
-                            action="/update-stock"
-                        >
-
-                            <input
-                                type="hidden"
-                                name="stock_item_code"
-                                value="{{ item.item_code }}"
-                            >
-
-
-                            <input
-                                type="number"
-                                name="stock_quantity"
-                                min="0"
-                                value="{{ item.quantity }}"
-                                required
-                            >
-
-
-                            <div class="stock-form-actions">
-
-                                <button
-                                    type="submit"
-                                    class="stock-save"
-                                >
-                                    Save Correction
-                                </button>
-
-
-                                <button
-                                    type="button"
-                                    class="stock-cancel"
-                                    onclick="toggleStockForm('edit-{{ item.item_code }}')"
-                                >
-                                    Cancel
-                                </button>
-
-                            </div>
-
-                        </form>
-
-                    </div>
+                    </span>
 
 
                 </div>
 
 
-            {% endfor %}
+
+                <!-- Stock Search -->
+
+                <div class="stock-search">
+
+                    <span>
+                        ⌕
+                    </span>
 
 
-        </div>
+                    <input
+                        id="stockSearch"
+                        placeholder="Search toner by name or code..."
+                        oninput="filterStock()"
+                    >
+
+                </div>
 
 
-    </div>
+
+                <!-- Stock List -->
+
+                <div class="stock-list">
+
+
+                    {% for item in stock %}
+
+
+                        {% if item.item_code %}
+
+
+                            <div
+                                class="stock-item"
+                                data-stock="{{ (item.toner_name ~ ' ' ~ item.item_code)|lower }}"
+                            >
+
+
+                                <!-- Toner Information -->
+
+                                <div class="toner-info">
+
+
+                                    <div class="toner-thumb">
+
+                                        {% if 'HP' in item.toner_name %}
+
+                                            HP
+
+                                        {% else %}
+
+                                            ▣
+
+                                        {% endif %}
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+
+                                            {{ item.toner_name }}
+
+                                        </strong>
+
+
+                                        <small>
+
+                                            {{ item.item_code }}
+
+                                        </small>
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <!-- Stock Information -->
+
+                                <div class="stock-right">
+
+
+                                    {% if item.quantity == 0 %}
+
+
+                                        <b class="qty out">
+
+                                            {{ item.quantity }}
+
+                                        </b>
+
+
+                                        <span class="status out-badge">
+
+                                            Out of Stock
+
+                                        </span>
+
+
+                                    {% elif item.quantity <= 5 %}
+
+
+                                        <b class="qty low">
+
+                                            {{ item.quantity }}
+
+                                        </b>
+
+
+                                        <span class="status low-badge">
+
+                                            Low Stock
+
+                                        </span>
+
+
+                                    {% else %}
+
+
+                                        <b class="qty good">
+
+                                            {{ item.quantity }}
+
+                                        </b>
+
+
+                                        <span class="status good-badge">
+
+                                            Available
+
+                                        </span>
+
+
+                                    {% endif %}
+
+
+
+                                    <!-- Stock Buttons -->
+
+                                    <div class="stock-actions">
+
+
+                                        <button
+                                            type="button"
+                                            class="add-btn"
+                                            onclick="toggleStockForm('add-{{ loop.index }}')"
+                                        >
+
+                                            + Add Stock
+
+                                        </button>
+
+
+                                        <button
+                                            type="button"
+                                            class="edit-btn"
+                                            onclick="toggleStockForm('edit-{{ loop.index }}')"
+                                        >
+
+                                            ✎ Edit Stock
+
+                                        </button>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <!-- ADD STOCK FORM -->
+
+                                <form
+                                    id="add-{{ loop.index }}"
+                                    class="inline-stock-form"
+                                    method="post"
+                                    action="/add-stock"
+                                >
+
+
+                                    <input
+                                        type="hidden"
+                                        name="stock_item_code"
+                                        value="{{ item.item_code }}"
+                                    >
+
+
+                                    <input
+                                        type="number"
+                                        name="stock_quantity"
+                                        min="1"
+                                        placeholder="Qty to add"
+                                        required
+                                    >
+
+
+                                    <button type="submit">
+
+                                        Add
+
+                                    </button>
+
+
+                                </form>
+
+
+
+                                <!-- EDIT STOCK FORM -->
+
+                                <form
+                                    id="edit-{{ loop.index }}"
+                                    class="inline-stock-form"
+                                    method="post"
+                                    action="/update-stock"
+                                >
+
+
+                                    <input
+                                        type="hidden"
+                                        name="stock_item_code"
+                                        value="{{ item.item_code }}"
+                                    >
+
+
+                                    <input
+                                        type="number"
+                                        name="stock_quantity"
+                                        min="0"
+                                        value="{{ item.quantity }}"
+                                        required
+                                    >
+
+
+                                    <button type="submit">
+
+                                        Save
+
+                                    </button>
+
+
+                                </form>
+
+
+                            </div>
+
+
+                        {% endif %}
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            </aside>
+
+
+        </section>
+
+
+    </main>
 
 
 </div>
 
-
-</div>
-
-
-</main>
 
 
 <!-- =====================================================
-     EMPLOYEE AUTO FETCH
-===================================================== -->
+     JAVASCRIPT
+====================================================== -->
 
 <script>
 
+
+/* =====================================================
+   PAGE LOAD
+====================================================== */
+
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    () => {
 
 
-        const employeeCodeInput =
+        const date = new Date();
+
+
+        /* Date */
+
+        document.getElementById(
+            "todayDate"
+        ).textContent = date.toLocaleDateString(
+            "en-IN",
+            {
+                weekday: "short",
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+
+        /* Time */
+
+        document.getElementById(
+            "todayTime"
+        ).textContent = date.toLocaleTimeString(
+            "en-IN",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+
+        /* Collection Date */
+
+        const collectionDate =
+            document.getElementById(
+                "collection_date"
+            );
+
+
+        if (collectionDate) {
+
+            collectionDate.value =
+                date.toISOString().split("T")[0];
+
+        }
+
+
+        /* Employee Auto Fetch */
+
+        const employee =
             document.getElementById(
                 "employee_id"
             );
 
 
-        const employeeNameInput =
-            document.getElementById(
-                "employee_name"
+        if (employee) {
+
+            employee.addEventListener(
+                "blur",
+                fetchEmployee
             );
 
-
-        const designationInput =
-            document.getElementById(
-                "designation"
-            );
-
-
-        const departmentInput =
-            document.getElementById(
-                "department"
-            );
-
-
-        employeeCodeInput.addEventListener(
-            "blur",
-            async function () {
-
-
-                const employeeCode =
-                    employeeCodeInput.value.trim();
-
-
-                if (!employeeCode) {
-
-                    employeeNameInput.value = "";
-                    designationInput.value = "";
-                    departmentInput.value = "";
-
-                    return;
-
-                }
-
-
-                try {
-
-
-                    const response =
-                        await fetch(
-                            `/employee/${encodeURIComponent(employeeCode)}`
-                        );
-
-
-                    if (!response.ok) {
-
-                        throw new Error(
-                            "Server returned an error"
-                        );
-
-                    }
-
-
-                    const data =
-                        await response.json();
-
-
-                    if (data.found) {
-
-
-                        employeeNameInput.value =
-                            data.employee_name || "";
-
-
-                        designationInput.value =
-                            data.designation || "";
-
-
-                        departmentInput.value =
-                            data.department || "";
-
-
-                    }
-
-                    else {
-
-
-                        employeeNameInput.value = "";
-                        designationInput.value = "";
-                        departmentInput.value = "";
-
-
-                        alert(
-                            "Employee code not found."
-                        );
-
-                    }
-
-
-                }
-
-                catch (error) {
-
-
-                    console.error(
-                        "Employee fetch error:",
-                        error
-                    );
-
-
-                    employeeNameInput.value = "";
-                    designationInput.value = "";
-                    departmentInput.value = "";
-
-
-                    alert(
-                        "Could not fetch employee details."
-                    );
-
-                }
-
-
-            }
-        );
+        }
 
 
     }
 );
 
-</script>
 
 
-<!-- =====================================================
-     STOCK FUNCTIONS
-===================================================== -->
+/* =====================================================
+   EMPLOYEE FETCH
+====================================================== */
 
-<script>
-
-function toggleStockForm(formId) {
-
-    const form =
-        document.getElementById(formId);
+async function fetchEmployee() {
 
 
-    if (!form) {
+    const code =
+        document.getElementById(
+            "employee_id"
+        ).value.trim();
+
+
+    if (!code) {
+
         return;
+
     }
 
 
-    /*
-     * Close other open stock forms first.
-     */
-
-    document
-        .querySelectorAll(".stock-form")
-        .forEach(function (item) {
-
-            if (item.id !== formId) {
-                item.classList.remove("active");
-            }
-
-        });
+    try {
 
 
-    form.classList.toggle("active");
-
-}
-
-</script>
-
-
-<!-- =====================================================
-     EXPORT FUNCTIONS
-===================================================== -->
-
-<script>
+        const response =
+            await fetch(
+                `/employee/${encodeURIComponent(code)}`
+            );
 
 
-function toggleExportBox() {
+        const data =
+            await response.json();
 
-    const exportBox =
-        document.getElementById(
-            "exportBox"
+
+        if (data.found) {
+
+
+            document.getElementById(
+                "employee_name"
+            ).value =
+                data.employee_name || "";
+
+
+            document.getElementById(
+                "designation"
+            ).value =
+                data.designation || "";
+
+
+            document.getElementById(
+                "department"
+            ).value =
+                data.department || "";
+
+
+        } else {
+
+
+            document.getElementById(
+                "employee_name"
+            ).value = "";
+
+
+            document.getElementById(
+                "designation"
+            ).value = "";
+
+
+            document.getElementById(
+                "department"
+            ).value = "";
+
+
+            alert(
+                "Employee code not found."
+            );
+
+        }
+
+
+    } catch (error) {
+
+
+        alert(
+            "Could not fetch employee details."
         );
 
 
-    if (
-        exportBox.style.display === "none"
-    ) {
-
-        exportBox.style.display = "block";
-
-    }
-
-    else {
-
-        exportBox.style.display = "none";
-
     }
 
 }
 
 
+
+/* =====================================================
+   STOCK FORM
+====================================================== */
+
+function toggleStockForm(id) {
+
+
+    document
+        .querySelectorAll(
+            ".inline-stock-form"
+        )
+        .forEach(
+            form => {
+
+
+                if (form.id !== id) {
+
+                    form.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+
+    document
+        .getElementById(id)
+        .classList
+        .toggle("show");
+
+}
+
+
+
+/* =====================================================
+   STOCK SEARCH
+====================================================== */
+
+function filterStock() {
+
+
+    const query =
+        document.getElementById(
+            "stockSearch"
+        ).value.toLowerCase();
+
+
+    document
+        .querySelectorAll(
+            ".stock-item"
+        )
+        .forEach(
+            item => {
+
+
+                item.style.display =
+                    item.dataset.stock.includes(
+                        query
+                    )
+                        ? ""
+                        : "none";
+
+
+            }
+        );
+
+}
+
+
+
+/* =====================================================
+   EXPORT BOX
+====================================================== */
+
+function toggleExportBox() {
+    const box = document.getElementById("exportBox");
+    box.classList.toggle("open");
+    if (box.classList.contains("open")) {
+        setTimeout(() => box.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+    }
+}
+
+
+/* =====================================================
+   CLOSE EXPORT
+====================================================== */
 
 function closeExportBox() {
 
-    document.getElementById(
-        "exportBox"
-    ).style.display = "none";
+
+    document.getElementById("exportBox").classList.remove("open");
 
 }
 
 
 
-function setExportRange(months) {
-
-
-    const endDate =
-        new Date();
-
-
-    const startDate =
-        new Date();
-
-
-    startDate.setMonth(
-        startDate.getMonth() - months
-    );
-
-
-    document.getElementById(
-        "end_date"
-    ).value =
-        formatDate(endDate);
-
-
-    document.getElementById(
-        "start_date"
-    ).value =
-        formatDate(startDate);
-
-}
-
-
-
-function formatDate(date) {
-
-
-    const year =
-        date.getFullYear();
-
-
-    const month =
-        String(
-            date.getMonth() + 1
-        ).padStart(2, "0");
-
-
-    const day =
-        String(
-            date.getDate()
-        ).padStart(2, "0");
-
-
-    return `${year}-${month}-${day}`;
-
-}
-
-
+/* =====================================================
+   CLEAR EXPORT FILTERS
+====================================================== */
 
 function clearExportFilters() {
 
@@ -1341,6 +1429,60 @@ function clearExportFilters() {
     ).value = "";
 
 }
+
+
+/* =====================================================
+   NIGHT MODE
+===================================================== */
+
+function toggleNightMode() {
+
+    const enabled =
+        document.body.classList.toggle(
+            "night-mode-active"
+        );
+
+    localStorage.setItem(
+        "nightMode",
+        enabled ? "on" : "off"
+    );
+
+}
+
+
+/* =====================================================
+   LOAD NIGHT MODE PREFERENCE
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const toggle =
+            document.getElementById(
+                "nightModeToggle"
+            );
+
+        const nightMode =
+            localStorage.getItem(
+                "nightMode"
+            );
+
+
+        if (nightMode === "on") {
+
+            document.body.classList.add(
+                "night-mode-active"
+            );
+
+            if (toggle) {
+                toggle.checked = true;
+            }
+
+        }
+
+    }
+);
 
 
 </script>
