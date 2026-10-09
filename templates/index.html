@@ -732,9 +732,7 @@
 
 
                                 {% for r in rows %}
-
-
-                                    <tr>
+    <tr class="collection-row">
 
 
                                         <td>
@@ -807,7 +805,28 @@
 
 
                     </div>
+<!-- PAGINATION -->
+<div class="collection-pagination">
 
+    <button
+        type="button"
+        id="previousPage"
+        onclick="changeCollectionPage(-1)"
+    >
+        ‹ Previous
+    </button>
+
+    <div id="collectionPageNumbers"></div>
+
+    <button
+        type="button"
+        id="nextPage"
+        onclick="changeCollectionPage(1)"
+    >
+        Next ›
+    </button>
+
+</div>
 
                 </section>
 
@@ -1484,6 +1503,165 @@ document.addEventListener(
     }
 );
 
+/* =====================================================
+   RECENT COLLECTIONS PAGINATION
+===================================================== */
+
+let collectionCurrentPage = 1;
+
+const collectionRowsPerPage = 10;
+
+
+function showCollectionPage(page) {
+
+    const rows = document.querySelectorAll(
+        ".collection-row"
+    );
+
+    const totalPages = Math.ceil(
+        rows.length / collectionRowsPerPage
+    );
+
+    if (totalPages === 0) {
+        return;
+    }
+
+    if (page < 1) {
+        page = 1;
+    }
+
+    if (page > totalPages) {
+        page = totalPages;
+    }
+
+    collectionCurrentPage = page;
+
+
+    rows.forEach((row, index) => {
+
+        const start =
+            (collectionCurrentPage - 1)
+            * collectionRowsPerPage;
+
+        const end =
+            start + collectionRowsPerPage;
+
+        if (index >= start && index < end) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+
+    updateCollectionPagination(totalPages);
+}
+
+
+function updateCollectionPagination(totalPages) {
+
+    const pageNumbers =
+        document.getElementById(
+            "collectionPageNumbers"
+        );
+
+    const previousButton =
+        document.getElementById(
+            "previousPage"
+        );
+
+    const nextButton =
+        document.getElementById(
+            "nextPage"
+        );
+
+
+    if (!pageNumbers) {
+        return;
+    }
+
+
+    pageNumbers.innerHTML = "";
+
+
+    for (
+        let page = 1;
+        page <= totalPages;
+        page++
+    ) {
+
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+
+        button.textContent = page;
+
+
+        if (
+            page ===
+            collectionCurrentPage
+        ) {
+
+            button.classList.add(
+                "active-page"
+            );
+
+        }
+
+
+        button.onclick = function () {
+
+            showCollectionPage(page);
+
+        };
+
+
+        pageNumbers.appendChild(button);
+
+    }
+
+
+    if (previousButton) {
+
+        previousButton.disabled =
+            collectionCurrentPage === 1;
+
+    }
+
+
+    if (nextButton) {
+
+        nextButton.disabled =
+            collectionCurrentPage === totalPages;
+
+    }
+
+}
+
+
+function changeCollectionPage(direction) {
+
+    showCollectionPage(
+        collectionCurrentPage + direction
+    );
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        showCollectionPage(1);
+
+    }
+);
 
 </script>
 

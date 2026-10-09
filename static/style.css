@@ -2,6 +2,46 @@
    NIGHT MODE TOGGLE
 ===================================================== */
 
+.collection-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 0;
+}
+
+.collection-pagination button {
+    border: 1px solid #d9e1ec;
+    background: #ffffff;
+    color: #334155;
+    border-radius: 7px;
+    padding: 7px 11px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.collection-pagination button:hover {
+    background: #f1f5f9;
+}
+
+.collection-pagination button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.collection-pagination #collectionPageNumbers {
+    display: flex;
+    gap: 5px;
+}
+
+.collection-pagination #collectionPageNumbers button.active-page {
+    background: #1473e6;
+    color: #ffffff;
+    border-color: #1473e6;
+}
+
 .night-mode {
     display: flex;
     align-items: center;
@@ -174,7 +214,17 @@ tbody tr:last-child td{border-bottom:0}.empty{text-align:center;color:#8896a9;pa
 .stock-item{position:relative;padding:8px 1px;border-bottom:1px solid #edf1f5}
 .toner-info{display:flex;gap:7px;align-items:center;padding-right:35px}
 .toner-thumb{width:27px;height:27px;border-radius:5px;background:#eef3f7;display:grid;place-items:center;font-size:10px;font-weight:900;color:#4a5e74}
-.toner-info strong{display:block;font-size:10px;line-height:1.25;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.toner-info small{display:block;color:#7c899a;font-size:9px;margin-top:2px}
+
+.toner-info strong {
+    display: block;
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: normal;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    max-width: none;
+}
+
 .stock-right{position:relative;min-height:35px;padding-top:3px;text-align:right}
 .qty{font-size:15px;line-height:1}.qty.good{color:#079a62}.qty.low{color:#f27c16}.qty.out{color:#ef2e3a}
 .status{font-size:7px;margin-left:4px;padding:3px 5px;border-radius:6px;display:inline-block}.good-badge{background:#e0f6eb;color:#07804f}.low-badge{background:#fff0d9;color:#d36a00}.out-badge{background:#ffe4e5;color:#d5222c}
