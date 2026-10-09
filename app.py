@@ -3,9 +3,16 @@ import sqlite3
 import csv
 import io
 from datetime import datetime
+import os
+from functools import wraps
+from flask import session
+from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
-app.secret_key = "change-this-secret-key"
+app.secret_key = os.environ.get("SECRET_KEY")
+
+if not app.secret_key:
+    raise RuntimeError("Please configure the SECRET_KEY environment variable.")
 
 DB = "toner.db"
 
@@ -18,6 +25,69 @@ def db():
     conn = sqlite3.connect(DB)
     conn.row_factory = sqlite3.Row
     return conn
+
+
+# Login page
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
+
+        conn = db()
+        user = conn.execute(
+            """
+            SELECT id, username, password_hash, role
+            FROM users
+            WHERE username = ?
+            """,
+            (username,),
+        ).fetchone()
+        conn.close()
+
+        if user and check_password_hash(user["password_hash"], password):
+            session.clear()
+            session["user_id"] = user["id"]
+            session["username"] = user["username"]
+            session["role"] = user["role"]
+            return redirect(url_for("home"))
+
+        flash("Invalid username or password.")
+
+    return render_template("login.html")
+
+
+# Logout
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+
+# Require login
+def login_required(view):
+    @wraps(view)
+    def wrapped_view(*args, **kwargs):
+        if "user_id" not in session:
+            return redirect(url_for("login"))
+        return view(*args, **kwargs)
+    return wrapped_view
+
+
+# Require Admin role
+def admin_required(view):
+    @wraps(view)
+    def wrapped_view(*args, **kwargs):
+        if "user_id" not in session:
+            return redirect(url_for("login"))
+
+        if session.get("role") != "Admin":
+            flash("You do not have permission to perform this action.")
+            return redirect(url_for("home"))
+
+        return view(*args, **kwargs)
+    return wrapped_view
+
 
 
 # =========================================================
@@ -57,6 +127,18 @@ TONER_MASTER = [
 def init_db():
 
     conn = db()
+
+    
+    # Create users table for login
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL UNIQUE,
+            password_hash TEXT NOT NULL,
+            role TEXT NOT NULL CHECK(role IN ('Admin', 'User'))
+        )
+    """)
+
 
     # -----------------------------------------------------
     # Employee Master
@@ -148,6 +230,7 @@ def init_db():
 # =========================================================
 
 @app.route("/")
+@login_required
 def home():
 
     search = request.args.get(
@@ -249,6 +332,7 @@ def home():
 # =========================================================
 
 @app.get("/employee/<employee_code>")
+@login_required
 def get_employee(employee_code):
 
     conn = db()
@@ -287,6 +371,7 @@ def get_employee(employee_code):
 # =========================================================
 
 @app.post("/submit")
+@login_required
 def submit():
 
     employee_id = request.form.get(
@@ -491,6 +576,7 @@ def submit():
 # =========================================================
 
 @app.post("/update-stock")
+@admin_required
 def update_stock():
 
     item_code = request.form.get(
@@ -593,6 +679,7 @@ def update_stock():
 # =========================================================
 
 @app.post("/add-stock")
+@admin_required
 def add_stock():
 
     item_code = request.form.get(
@@ -721,6 +808,7 @@ def add_stock():
 # =========================================================
 
 @app.get("/export")
+@login_required
 def export():
 
     start_date = request.args.get(
@@ -858,12 +946,12 @@ def export():
     )
 
 
+
 # =========================================================
 # START APPLICATION
 # =========================================================
 
+init_db()
+
 if __name__ == "__main__":
-
-    init_db()
-
     app.run(host="0.0.0.0", port=5000, debug=False)
